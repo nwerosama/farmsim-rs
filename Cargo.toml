@@ -1,0 +1,26 @@
+[package]
+name = "farmsim"
+version = "0.1.1"
+rust-version = "1.85"
+edition = "2024"
+readme = "README.md"
+license-file = "LICENSE"
+authors = ["Nwerosama"]
+repository = "https://github.com/nwerosama/farmsim-rs"
+description = "Bindings/API schemas for all compatible Farming Simulator titles"
+exclude = [
+  "rust-toolchain",
+  "rustfmt.toml",
+  ".gitignore",
+  ".github",
+  ".vscode"
+]
+
+[dependencies]
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+[features]
+default = []
+fs25 = []
+fs22 = []
