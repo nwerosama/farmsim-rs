@@ -100,3 +100,15 @@ pub struct Field {
   pub x:        Option<f32>,
   pub z:        Option<f32>
 }
+
+// it is only present in XML data but not available in JSON data
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct Farmland {
+  pub name:  Option<String>,
+  pub id:    Option<i8>,
+  pub owner: Option<i8>,
+  pub area:  Option<f32>,
+  pub price: Option<String>,
+  pub x:     Option<f32>,
+  pub z:     Option<f32>
+}
