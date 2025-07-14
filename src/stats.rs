@@ -79,6 +79,7 @@ pub struct Player {
 pub struct Vehicle {
   pub name:     Option<String>,
   pub category: Option<String>,
+  pub type_:    Option<String>,
   pub x:        Option<f32>,
   pub y:        Option<f32>,
   pub z:        Option<f32>,
