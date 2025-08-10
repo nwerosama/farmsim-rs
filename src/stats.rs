@@ -31,6 +31,7 @@ where
 pub struct DssData {
   pub server:   Option<Server>,
   pub slots:    Option<Slots>,
+  #[serde(default)]
   pub vehicles: Vec<Vehicle>,
   #[serde(deserialize_with = "serde_mods", default)]
   pub mods:     Vec<Mod>
