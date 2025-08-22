@@ -13,7 +13,7 @@ use {
 
 // Used for the doc comment without making it look ugly.
 #[allow(unused)]
-use crate::careersavegame::Statistics;
+use super::careersavegame::CsgStatistics;
 
 // todo; make xml-compatible with same structs below but feature flag toggle?
 //       as the fields below is all from JSON payload
@@ -49,7 +49,7 @@ pub struct Server {
   #[serde(rename = "mapOverviewFilename")]
   pub map_overview_filename: String,
   /// This value will always return zero in games beyond Farming Simulator 17<br>
-  /// For servers post-FS17, use `money` field in [Statistics] instead
+  /// For servers post-FS17, use `money` field in [CsgStatistics] instead
   pub money:                 i32,
   pub name:                  String,
   pub version:               String
@@ -59,12 +59,12 @@ pub struct Server {
 pub struct Slots {
   pub capacity: i8,
   pub used:     i8,
-  pub players:  Vec<Player>
+  pub players:  Vec<DssPlayer>
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 /// Note: The `xyz` coordinates are only visible when player is on foot!
-pub struct Player {
+pub struct DssPlayer {
   #[serde(rename = "isUsed")]
   pub is_used:  Option<bool>,
   #[serde(rename = "isAdmin")]

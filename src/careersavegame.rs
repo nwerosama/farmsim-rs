@@ -24,7 +24,7 @@ pub struct CareerSavegame {
   pub map: Option<Map>,
   #[serde(rename = "introductionHelp")]
   pub introduction_help: Option<IntroductionHelp>,
-  pub statistics: Option<Statistics>,
+  pub statistics: Option<CsgStatistics>,
   #[serde(rename = "mapsSplitShapeFileIds")]
   pub maps_split_shape_file_ids: Option<MapsSplitShapeFileIds>,
   #[serde(rename = "slotSystem")]
@@ -118,7 +118,7 @@ pub struct IntroductionHelp {
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct Statistics {
+pub struct CsgStatistics {
   pub money:     i32,
   #[serde(rename = "playTime")]
   pub play_time: f32

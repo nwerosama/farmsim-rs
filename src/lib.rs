@@ -1,10 +1,12 @@
 mod careersavegame;
 mod economy;
+mod farms;
 mod stats;
 
 pub use {
   careersavegame::*,
   economy::*,
+  farms::*,
   stats::*
 };
 
