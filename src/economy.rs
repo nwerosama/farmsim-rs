@@ -6,7 +6,8 @@ use serde::{
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Economy {
-  pub great_demands: GreatDemands,
+  #[serde(default)]
+  pub great_demands: Option<GreatDemands>,
   pub fill_types:    FillTypes
 }
 

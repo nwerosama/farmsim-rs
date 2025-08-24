@@ -107,7 +107,7 @@ pub struct FarmStatistics {
   pub breed_cows_count:          u32,
   pub breed_sheep_count:         u32,
   pub breed_pigs_count:          u32,
-  pub breed_chicken_count:      u32,
+  pub breed_chicken_count:       u32,
   pub breed_horses_count:        u32,
   #[cfg(feature = "fs25")]
   pub breed_goats_count:         u32,

@@ -18,6 +18,16 @@ where
   Ok(mods.into_iter().map(Mod::CsgFormat).collect())
 }
 
+/// Converts the 'Growth Mode' integer to friendly name, e.g `Yes` when setting is on `1` in API
+pub fn prettify_growth_mode(growth_mode: i8) -> &'static str {
+  match growth_mode {
+    1 => "Yes",
+    2 => "No",
+    3 => "Paused",
+    _ => "Unknown"
+  }
+}
+
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CareerSavegame {
   pub settings: Option<Settings>,
