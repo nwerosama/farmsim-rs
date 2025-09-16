@@ -1,7 +1,8 @@
 use {
   super::{
     CsgMod,
-    Mod
+    Mod,
+    Validation
   },
   serde::{
     Deserialize,
@@ -41,6 +42,17 @@ pub struct CareerSavegame {
   pub slot_system: Option<SlotSystem>,
   #[serde(rename = "mod", deserialize_with = "serde_mods", default)]
   pub mods: Vec<Mod>
+}
+
+impl Validation for CareerSavegame {
+  fn is_valid(&self) -> bool {
+    self
+      .settings
+      .as_ref()
+      .map(|s| !s.map_title.is_empty() && s.time_scale > 0.0)
+      .unwrap_or(false)
+      && self.slot_system.as_ref().is_some_and(|ss| !ss.slot_usage.is_empty())
+  }
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]

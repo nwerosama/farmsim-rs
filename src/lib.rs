@@ -43,6 +43,11 @@ impl fmt::Display for Format {
   }
 }
 
+/// Validate the data before doing something with it
+pub trait Validation {
+  fn is_valid(&self) -> bool;
+}
+
 /// List of supported filenames in the `dedicated-server-savegame` endpoint
 #[derive(Debug, Clone, Copy)]
 pub enum Filename {

@@ -1,7 +1,8 @@
 use {
   super::{
     DssMod,
-    Mod
+    Mod,
+    Validation
   },
   serde::{
     Deserialize,
@@ -35,6 +36,10 @@ pub struct DssData {
   pub vehicles: Vec<Vehicle>,
   #[serde(deserialize_with = "serde_mods", default)]
   pub mods:     Vec<Mod>
+}
+
+impl Validation for DssData {
+  fn is_valid(&self) -> bool { self.server.as_ref().is_some_and(|s| s.day_time > 0) }
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
