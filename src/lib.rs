@@ -3,6 +3,7 @@ mod economy;
 mod environment;
 mod farms;
 mod stats;
+pub mod utils;
 
 pub use {
   careersavegame::*,
@@ -120,21 +121,32 @@ impl Endpoint {
     format: Format
   ) -> Self {
     Self {
-      base_url: Cow::Owned(format!("http://{ip}/feed")),
+      base_url: Cow::Owned(format!("http://{ip}")),
       code,
       format
     }
   }
 
   /// Returns the string containing the `/feed/dedicated-server-stats` endpoint
-  pub fn stats(&self) -> String { format!("{}/dedicated-server-stats.{}?code={}", self.base_url, self.format, self.code) }
+  pub fn stats(&self) -> String { format!("{}/feed/dedicated-server-stats.{}?code={}", self.base_url, self.format, self.code) }
 
   /// Returns the string containing the `/feed/dedicated-server-savegame` endpoint with chosen filename
   pub fn savegame(
     &self,
     filename: Filename
   ) -> String {
-    format!("{}/dedicated-server-savegame.html?code={}&file={filename}", self.base_url, self.code)
+    format!("{}/feed/dedicated-server-savegame.html?code={}&file={filename}", self.base_url, self.code)
+  }
+
+  /// Returns the string containing the mods endpoint, direct download is provided if `all_mods` is enabled else links to panel's mods tab instead
+  pub fn mods(
+    &self,
+    all_mods: bool
+  ) -> String {
+    match all_mods {
+      true => format!("{}/all_mods_download?onlyActive=true", self.base_url),
+      false => format!("{}/mods.html", self.base_url)
+    }
   }
 }
 
