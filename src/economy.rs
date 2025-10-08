@@ -1,6 +1,9 @@
-use serde::{
-  Deserialize,
-  Serialize
+use {
+  serde::{
+    Deserialize,
+    Serialize
+  },
+  std::fmt
 };
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -88,29 +91,29 @@ pub enum SeasonPeriod {
   LateWinter
 }
 
-impl std::fmt::Display for SeasonPeriod {
+impl fmt::Display for SeasonPeriod {
   fn fmt(
     &self,
-    f: &mut std::fmt::Formatter<'_>
-  ) -> std::fmt::Result {
-    let (period, season) = match self {
-      SeasonPeriod::EarlySpring => ("Early", "Spring"),
-      SeasonPeriod::MidSpring => ("Mid", "Spring"),
-      SeasonPeriod::LateSpring => ("Late", "Spring"),
+    f: &mut fmt::Formatter<'_>
+  ) -> fmt::Result {
+    match self {
+      SeasonPeriod::EarlySpring => "Early Spring",
+      SeasonPeriod::MidSpring => "Mid Spring",
+      SeasonPeriod::LateSpring => "Late Spring",
 
-      SeasonPeriod::EarlySummer => ("Early", "Summer"),
-      SeasonPeriod::MidSummer => ("Mid", "Summer"),
-      SeasonPeriod::LateSummer => ("Late", "Summer"),
+      SeasonPeriod::EarlySummer => "Early Summer",
+      SeasonPeriod::MidSummer => "Mid Summer",
+      SeasonPeriod::LateSummer => "Late Summer",
 
-      SeasonPeriod::EarlyAutumn => ("Early", "Autumn"),
-      SeasonPeriod::MidAutumn => ("Mid", "Autumn"),
-      SeasonPeriod::LateAutumn => ("Late", "Autumn"),
+      SeasonPeriod::EarlyAutumn => "Early Autumn",
+      SeasonPeriod::MidAutumn => "Mid Autumn",
+      SeasonPeriod::LateAutumn => "Late Autumn",
 
-      SeasonPeriod::EarlyWinter => ("Early", "Winter"),
-      SeasonPeriod::MidWinter => ("Mid", "Winter"),
-      SeasonPeriod::LateWinter => ("Late", "Winter")
-    };
-    write!(f, "{period} {season}")
+      SeasonPeriod::EarlyWinter => "Early Winter",
+      SeasonPeriod::MidWinter => "Mid Winter",
+      SeasonPeriod::LateWinter => "Late Winter"
+    }
+    .fmt(f)
   }
 }
 

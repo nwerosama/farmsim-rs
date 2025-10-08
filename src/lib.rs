@@ -36,11 +36,11 @@ impl fmt::Display for Format {
     &self,
     f: &mut fmt::Formatter<'_>
   ) -> fmt::Result {
-    let ext = match self {
+    match self {
       Self::Json => "json",
       Self::Xml => "xml"
-    };
-    write!(f, "{ext}")
+    }
+    .fmt(f)
   }
 }
 
@@ -62,12 +62,12 @@ impl fmt::Display for Filename {
     &self,
     f: &mut fmt::Formatter<'_>
   ) -> fmt::Result {
-    let file = match self {
+    match self {
       Self::CareerSavegame => "careerSavegame",
       Self::Vehicles => "vehicles",
       Self::Economy => "economy"
-    };
-    write!(f, "{file}")
+    }
+    .fmt(f)
   }
 }
 
