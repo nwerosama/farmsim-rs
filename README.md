@@ -1,2 +1,5 @@
 # Farmsim-rs
-This crate is currently work in progress but it provides the API bindings for compatible Farming Simulator titles for use in your projects
+It provides the bindings and common utilities for compatible Farming Simulator titles (FS22 and FS25)
+
+>[!NOTE]
+This crate is still work in progress so expect breaking changes to happen when they occur.
