@@ -1,6 +1,6 @@
 [package]
 name = "farmsim"
-version = "0.1.5"
+version = "0.1.6"
 rust-version = "1.88"
 edition = "2024"
 readme = "README.md"
