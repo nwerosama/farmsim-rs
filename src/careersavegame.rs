@@ -40,6 +40,9 @@ pub struct CareerSavegame {
   pub maps_split_shape_file_ids: Option<MapsSplitShapeFileIds>,
   #[serde(rename = "slotSystem")]
   pub slot_system: Option<SlotSystem>,
+  #[cfg(feature = "fs25")]
+  #[serde(rename = "foliageTypes")]
+  pub foliage_types: Option<FoliageTypes>,
   #[serde(rename = "mod", deserialize_with = "serde_mods", default)]
   pub mods: Vec<Mod>
 }
@@ -121,7 +124,11 @@ pub struct Settings {
   pub disaster_destruction_state: String,
   pub dirt_interval: i8,
   pub time_scale: f32,
-  pub auto_save_interval: f32
+  pub auto_save_interval: f32,
+  /// Recently introduced in Patch 1.14+
+  #[cfg(feature = "fs25")]
+  #[serde(default)]
+  pub is_cross_platform_savegame: bool
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -164,4 +171,20 @@ pub struct SplitShapeId {
 pub struct SlotSystem {
   #[serde(rename = "@slotUsage")]
   pub slot_usage: String
+}
+
+#[cfg(feature = "fs25")]
+#[derive(Debug, Clone, Deserialize)]
+pub struct FoliageTypes {
+  #[serde(rename = "foliageType")]
+  pub foliages: Vec<FoliageType>
+}
+
+#[cfg(feature = "fs25")]
+#[derive(Debug, Clone, Deserialize)]
+pub struct FoliageType {
+  /// Lowercased name of foliage
+  pub name:     String,
+  /// Path to foliage's XML file
+  pub filename: String
 }
