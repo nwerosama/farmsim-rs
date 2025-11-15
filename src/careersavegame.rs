@@ -184,7 +184,9 @@ pub struct FoliageTypes {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct FoliageType {
   /// Lowercased name of foliage
+  #[serde(rename = "@name")]
   pub name:     String,
   /// Path to foliage's XML file
+  #[serde(rename = "@filename")]
   pub filename: String
 }
