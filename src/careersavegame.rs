@@ -174,14 +174,14 @@ pub struct SlotSystem {
 }
 
 #[cfg(feature = "fs25")]
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct FoliageTypes {
   #[serde(rename = "foliageType")]
   pub foliages: Vec<FoliageType>
 }
 
 #[cfg(feature = "fs25")]
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct FoliageType {
   /// Lowercased name of foliage
   pub name:     String,
