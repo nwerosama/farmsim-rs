@@ -61,12 +61,12 @@ impl Validation for CareerSavegame {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Settings {
-  pub savegame_name: String,
-  pub creation_date: String,
-  pub map_id: String,
-  pub map_title: String,
-  pub save_date_formatted: String,
-  pub save_date: String,
+  pub savegame_name: Box<str>,
+  pub creation_date: Box<str>,
+  pub map_id: Box<str>,
+  pub map_title: Box<str>,
+  pub save_date_formatted: Box<str>,
+  pub save_date: Box<str>,
   #[cfg(feature = "fs22")]
   #[serde(default)]
   pub reset_vehicles: bool,
@@ -79,7 +79,7 @@ pub struct Settings {
   #[cfg(feature = "fs22")]
   #[serde(default)]
   pub difficulty: i8,
-  pub economic_difficulty: String,
+  pub economic_difficulty: Box<str>,
   #[cfg(feature = "fs25")]
   #[serde(default)]
   pub has_initially_owned_farmlands: bool,
@@ -121,7 +121,7 @@ pub struct Settings {
   pub map_tip_collision_revision: i8,
   pub map_placement_collision_revision: i8,
   pub map_navigation_collision_revision: i8,
-  pub disaster_destruction_state: String,
+  pub disaster_destruction_state: Box<str>,
   pub dirt_interval: i8,
   pub time_scale: f32,
   pub auto_save_interval: f32,
@@ -134,7 +134,7 @@ pub struct Settings {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Map {
   #[serde(rename = "foundHelpIcons")]
-  pub found_help_icons: String
+  pub found_help_icons: Box<str>
 }
 
 /// Two other fields are not shown as they aren't visible in the payload.<br>
@@ -143,7 +143,7 @@ pub struct Map {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct IntroductionHelp {
   #[serde(rename = "@active")]
-  pub active: String
+  pub active: Box<str>
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -156,7 +156,7 @@ pub struct CsgStatistics {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct MapsSplitShapeFileIds {
   #[serde(rename = "@count")]
-  pub count: String,
+  pub count: Box<str>,
   #[serde(rename = "id", default)]
   pub ids:   Vec<SplitShapeId>
 }
@@ -164,13 +164,13 @@ pub struct MapsSplitShapeFileIds {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct SplitShapeId {
   #[serde(rename = "@id")]
-  pub id: String
+  pub id: Box<str>
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct SlotSystem {
   #[serde(rename = "@slotUsage")]
-  pub slot_usage: String
+  pub slot_usage: Box<str>
 }
 
 #[cfg(feature = "fs25")]
@@ -185,8 +185,8 @@ pub struct FoliageTypes {
 pub struct FoliageType {
   /// Lowercased name of foliage
   #[serde(rename = "@name")]
-  pub name:     String,
+  pub name:     Box<str>,
   /// Path to foliage's XML file
   #[serde(rename = "@filename")]
-  pub filename: String
+  pub filename: Box<str>
 }

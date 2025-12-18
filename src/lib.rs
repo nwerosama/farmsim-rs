@@ -44,7 +44,8 @@ impl fmt::Display for Format {
   }
 }
 
-/// Validate the data before doing something with it
+/// Validate the data before doing something with it<br>
+/// ***Note:*** You must add your own validation code to this!
 pub trait Validation {
   fn is_valid(&self) -> bool;
 }
@@ -161,29 +162,29 @@ pub enum Mod {
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DssMod {
-  pub author:      Option<String>,
-  pub hash:        Option<String>,
+  pub author:      Option<Box<str>>,
+  pub hash:        Option<Box<str>>,
   /// Filename, e.g "FS25_precisionFarming"
-  pub name:        Option<String>,
-  pub version:     Option<String>,
+  pub name:        Option<Box<str>>,
+  pub version:     Option<Box<str>>,
   /// Friendly name, e.g "Precision Farming"
-  pub description: Option<String>
+  pub description: Option<Box<str>>
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CsgMod {
   /// Filename, e.g "FS25_precisionFarming"
   #[serde(rename = "@modName")]
-  pub mod_name:  Option<String>,
+  pub mod_name:  Option<Box<str>>,
   /// Friendly name, e.g "Precision Farming"
   #[serde(rename = "@title")]
-  pub title:     Option<String>,
+  pub title:     Option<Box<str>>,
   #[serde(rename = "@version")]
-  pub version:   Option<String>,
+  pub version:   Option<Box<str>>,
   #[serde(rename = "@required")]
-  pub required:  Option<String>,
+  pub required:  Option<Box<str>>,
   #[serde(rename = "@fileHash")]
-  pub file_hash: Option<String>
+  pub file_hash: Option<Box<str>>
 }
 
 impl Mod {

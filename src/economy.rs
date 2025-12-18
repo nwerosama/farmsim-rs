@@ -29,9 +29,9 @@ pub struct FillTypes {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct GreatDemand {
   #[serde(rename = "@uniqueId")]
-  pub unique_id:         String,
+  pub unique_id:         Box<str>,
   #[serde(rename = "@fillTypeName")]
-  pub fill_type_name:    String,
+  pub fill_type_name:    Box<str>,
   #[serde(rename = "@demandMultiplier")]
   pub demand_multiplier: f32,
   #[serde(rename = "@demandStartDay")]
@@ -41,15 +41,15 @@ pub struct GreatDemand {
   #[serde(rename = "@demandDuration")]
   pub demand_duration:   i32,
   #[serde(rename = "@isRunning")]
-  pub is_running:        String,
+  pub is_running:        Box<str>,
   #[serde(rename = "@isValid")]
-  pub is_valid:          String
+  pub is_valid:          Box<str>
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct FillType {
   #[serde(rename = "@fillType")]
-  pub fill_type:    String,
+  pub fill_type:    Box<str>,
   #[serde(rename = "@totalAmount")]
   pub total_amount: Option<i32>,
   #[serde(default)]

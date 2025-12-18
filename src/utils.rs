@@ -4,7 +4,7 @@ pub fn fmt_daytime(daytime: i32) -> String {
   let hours = daytime / 3_600_000;
   let mins = (daytime % 3_600_000) / 60_000;
 
-  let mut s = String::with_capacity(5);
+  let mut s = String::with_capacity(4);
   let _ = write!(&mut s, "{hours:02}:{mins:02}");
   s
 }
@@ -37,7 +37,8 @@ fn test_uptime() {
 
 #[test]
 fn test_daytime() {
+  assert_eq!(fmt_daytime(39090413), "10:51");
+  assert_eq!(fmt_daytime(29920000), "08:18");
   assert_eq!(fmt_daytime(9045683), "02:30");
-  assert_eq!(fmt_daytime(413975), "00:06");
   assert_eq!(fmt_daytime(0), "00:00");
 }

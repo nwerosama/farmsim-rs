@@ -52,7 +52,7 @@ pub struct Server {
   #[serde(rename = "mapSize")]
   pub map_size:              i32,
   #[serde(rename = "mapOverviewFilename")]
-  pub map_overview_filename: String,
+  pub map_overview_filename: Box<str>,
   /// This value will always return zero in games beyond Farming Simulator 17<br>
   /// For servers post-FS17, use `money` field in [CsgStatistics] instead
   pub money:                 i32,

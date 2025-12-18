@@ -14,7 +14,7 @@ pub struct Farm {
   #[serde(rename = "@farmId")]
   pub farm_id:    u8,
   #[serde(rename = "@name")]
-  pub name:       String,
+  pub name:       Box<str>,
   #[serde(rename = "@color")]
   pub color:      u8,
   #[serde(rename = "@loan")]
@@ -41,13 +41,13 @@ pub struct Players {
 #[serde(rename_all = "camelCase")]
 pub struct FarmPlayer {
   #[serde(rename = "@uniqueUserId")]
-  pub unique_user_id:      String,
+  pub unique_user_id:      Box<str>,
   #[serde(rename = "@farmManager")]
   pub farm_manager:        bool,
   #[serde(rename = "@lastNickname")]
-  pub last_nickname:       String,
+  pub last_nickname:       Box<str>,
   #[serde(rename = "@timeLastConnected")]
-  pub time_last_connected: String,
+  pub time_last_connected: Box<str>,
   #[serde(rename = "@buyVehicle")]
   pub buy_vehicle:         bool,
   #[serde(rename = "@sellVehicle")]
@@ -120,7 +120,7 @@ pub struct FarmStatistics {
   pub planted_tree_count:        u32,
   pub cut_tree_count:            u32,
   pub wood_tons_sold:            f32,
-  pub tree_types_cut:            String,
+  pub tree_types_cut:            Box<str>,
   pub pet_dog_count:             u32,
   pub repair_vehicle_count:      u32,
   pub repaint_vehicle_count:     u32,
