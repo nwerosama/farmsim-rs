@@ -45,7 +45,7 @@ impl fmt::Display for Format {
 }
 
 /// Validate the data before doing something with it<br>
-/// ***Note:*** You must add your own validation code to this!
+/// ***Note:*** You must add your own validation code to use this!
 pub trait Validation {
   fn is_valid(&self) -> bool;
 }

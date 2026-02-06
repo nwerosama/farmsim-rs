@@ -27,18 +27,23 @@ pub fn fmt_uptime(uptime: i32) -> String {
   s
 }
 
-#[test]
-fn test_uptime() {
-  assert_eq!(fmt_uptime(135), "2 h 15 m");
-  assert_eq!(fmt_uptime(61), "1 h 1 m");
-  assert_eq!(fmt_uptime(59), "59 m");
-  assert_eq!(fmt_uptime(0), "0 m");
-}
+#[cfg(test)]
+mod tests {
+  use super::*;
 
-#[test]
-fn test_daytime() {
-  assert_eq!(fmt_daytime(39090413), "10:51");
-  assert_eq!(fmt_daytime(29920000), "08:18");
-  assert_eq!(fmt_daytime(9045683), "02:30");
-  assert_eq!(fmt_daytime(0), "00:00");
+  #[test]
+  fn test_uptime() {
+    assert_eq!(fmt_uptime(135), "2 h 15 m");
+    assert_eq!(fmt_uptime(61), "1 h 1 m");
+    assert_eq!(fmt_uptime(59), "59 m");
+    assert_eq!(fmt_uptime(0), "0 m");
+  }
+
+  #[test]
+  fn test_daytime() {
+    assert_eq!(fmt_daytime(39090413), "10:51");
+    assert_eq!(fmt_daytime(29920000), "08:18");
+    assert_eq!(fmt_daytime(9045683), "02:30");
+    assert_eq!(fmt_daytime(0), "00:00");
+  }
 }

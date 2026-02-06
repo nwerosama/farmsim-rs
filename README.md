@@ -1,5 +1,7 @@
-# Farmsim-rs
-It provides the bindings and common utilities for compatible Farming Simulator titles (FS22 and FS25)
+# Farming Simulator schema bindings for Rust
 
->[!NOTE]
-This crate is still work in progress so expect breaking changes to happen when they occur.
+It currently provides the bindings and common utilities for the following supported Farming Simulator titles:
+- FS22
+- FS25
+
+If you happen to need something that the crate doesn't implement nor support, I suggest you to open an Issue or Pull Request.
