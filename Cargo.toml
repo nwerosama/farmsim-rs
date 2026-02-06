@@ -1,12 +1,13 @@
 [package]
 name = "farmsim"
-version = "0.2.0"
+version = "0.2.1"
 rust-version = "1.90"
 edition = "2024"
 readme = "README.md"
 license = "MIT"
 authors = ["Nwerosama"]
 repository = "https://github.com/nwerosama/farmsim-rs"
+documentation = "https://docs.rs/farmsim/latest/farmsim/"
 description = "Bindings/API schemas for all compatible Farming Simulator titles"
 exclude = [
   "rust-toolchain",
