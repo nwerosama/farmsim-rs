@@ -131,7 +131,8 @@ impl Endpoint {
   /// Returns the string containing the `/feed/dedicated-server-stats` endpoint
   pub fn stats(&self) -> String { format!("{}/feed/dedicated-server-stats.{}?code={}", self.base_url, self.format, self.code) }
 
-  /// Returns the string containing the `/feed/dedicated-server-savegame` endpoint with chosen filename
+  /// Returns the string containing the `/feed/dedicated-server-savegame`
+  /// endpoint with chosen filename
   pub fn savegame(
     &self,
     filename: Filename
@@ -139,7 +140,8 @@ impl Endpoint {
     format!("{}/feed/dedicated-server-savegame.html?code={}&file={filename}", self.base_url, self.code)
   }
 
-  /// Returns the string containing the mods endpoint, direct download is provided if `all_mods` is enabled else links to panel's mods tab instead
+  /// Returns the string containing the mods endpoint, direct download is
+  /// provided if `all_mods` is enabled else links to panel's mods tab instead
   pub fn mods(
     &self,
     all_mods: bool
@@ -162,33 +164,38 @@ pub enum Mod {
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DssMod {
+  #[serde(skip_serializing_if = "Option::is_none")]
   pub author:      Option<Box<str>>,
+  #[serde(skip_serializing_if = "Option::is_none")]
   pub hash:        Option<Box<str>>,
   /// Filename, e.g "FS25_precisionFarming"
+  #[serde(skip_serializing_if = "Option::is_none")]
   pub name:        Option<Box<str>>,
+  #[serde(skip_serializing_if = "Option::is_none")]
   pub version:     Option<Box<str>>,
   /// Friendly name, e.g "Precision Farming"
+  #[serde(skip_serializing_if = "Option::is_none")]
   pub description: Option<Box<str>>
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CsgMod {
   /// Filename, e.g "FS25_precisionFarming"
-  #[serde(rename = "@modName")]
+  #[serde(rename = "@modName", skip_serializing_if = "Option::is_none")]
   pub mod_name:  Option<Box<str>>,
   /// Friendly name, e.g "Precision Farming"
-  #[serde(rename = "@title")]
+  #[serde(rename = "@title", skip_serializing_if = "Option::is_none")]
   pub title:     Option<Box<str>>,
-  #[serde(rename = "@version")]
+  #[serde(rename = "@version", skip_serializing_if = "Option::is_none")]
   pub version:   Option<Box<str>>,
-  #[serde(rename = "@required")]
+  #[serde(rename = "@required", skip_serializing_if = "Option::is_none")]
   pub required:  Option<Box<str>>,
-  #[serde(rename = "@fileHash")]
+  #[serde(rename = "@fileHash", skip_serializing_if = "Option::is_none")]
   pub file_hash: Option<Box<str>>
 }
 
 impl Mod {
-  /// Retrieve the mod's name aka filename
+  /// Retrieve the mod's `name` aka filename
   pub fn name(&self) -> Option<&str> {
     match self {
       Self::DssFormat(dss_mod) => dss_mod.name.as_deref(),
@@ -196,7 +203,7 @@ impl Mod {
     }
   }
 
-  /// Retrieve the mod's version
+  /// Retrieve the mod's `version`
   pub fn version(&self) -> Option<&str> {
     match self {
       Self::DssFormat(dss_mod) => dss_mod.version.as_deref(),
@@ -204,7 +211,7 @@ impl Mod {
     }
   }
 
-  /// Retrieve the mod's MD5 hash
+  /// Retrieve the mod's `MD5 hash`
   pub fn hash(&self) -> Option<&str> {
     match self {
       Self::DssFormat(dss_mod) => dss_mod.hash.as_deref(),
@@ -212,11 +219,21 @@ impl Mod {
     }
   }
 
-  /// Retrieve the mod's description aka friendly name
+  /// Retrieve the mod's `description` aka friendly name
   pub fn description(&self) -> Option<&str> {
     match self {
       Self::DssFormat(dss_mod) => dss_mod.description.as_deref(),
       Self::CsgFormat(csg_mod) => csg_mod.title.as_deref()
+    }
+  }
+
+  /// Retrieve the mod's `required`<br>
+  /// **Note: This is only retrievable from CSG property! Accessing this from
+  /// DSS will result in a panic**
+  pub fn required(&self) -> Option<&str> {
+    match self {
+      Self::DssFormat(_) => panic!("Access this from CSG instead as DSS does not offer it"),
+      Self::CsgFormat(csg_mod) => csg_mod.required.as_deref()
     }
   }
 }

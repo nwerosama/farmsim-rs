@@ -1,5 +1,6 @@
 use std::fmt::Write;
 
+/// Formats the server's daytime into "09:30", without quotes
 pub fn fmt_daytime(daytime: i32) -> String {
   let hours = daytime / 3_600_000;
   let mins = (daytime % 3_600_000) / 60_000;
@@ -9,6 +10,7 @@ pub fn fmt_daytime(daytime: i32) -> String {
   s
 }
 
+/// Formats the player's uptime into "2 h 36 m", without quotes
 pub fn fmt_uptime(uptime: i32) -> String {
   let mins = uptime % 60;
   let hrs = uptime / 60;

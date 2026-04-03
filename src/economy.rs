@@ -9,7 +9,7 @@ use {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Economy {
-  #[serde(default)]
+  #[serde(default, skip_serializing_if = "Option::is_none")]
   pub great_demands: Option<GreatDemands>,
   pub fill_types:    FillTypes
 }
@@ -50,9 +50,9 @@ pub struct GreatDemand {
 pub struct FillType {
   #[serde(rename = "@fillType")]
   pub fill_type:    Box<str>,
-  #[serde(rename = "@totalAmount")]
+  #[serde(rename = "@totalAmount", skip_serializing_if = "Option::is_none")]
   pub total_amount: Option<i32>,
-  #[serde(default)]
+  #[serde(default, skip_serializing_if = "Option::is_none")]
   pub history:      Option<History>
 }
 
