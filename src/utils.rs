@@ -29,6 +29,17 @@ pub fn fmt_uptime(uptime: i32) -> String {
   s
 }
 
+/// Converts the 'Growth Mode' integer to friendly name, e.g `Yes` when setting
+/// is on `1` in API
+pub fn prettify_growth_mode(growth_mode: i8) -> &'static str {
+  match growth_mode {
+    1 => "Yes",
+    2 => "No",
+    3 => "Paused",
+    _ => "Unknown"
+  }
+}
+
 #[cfg(test)]
 mod tests {
   use super::*;
@@ -47,5 +58,13 @@ mod tests {
     assert_eq!(fmt_daytime(29920000), "08:18");
     assert_eq!(fmt_daytime(9045683), "02:30");
     assert_eq!(fmt_daytime(0), "00:00");
+  }
+
+  #[test]
+  fn test_growth_mode() {
+    assert_eq!(prettify_growth_mode(1), "Yes");
+    assert_eq!(prettify_growth_mode(2), "No");
+    assert_eq!(prettify_growth_mode(3), "Paused");
+    assert_eq!(prettify_growth_mode(4), "Unknown");
   }
 }

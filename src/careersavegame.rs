@@ -19,16 +19,6 @@ where
   Ok(mods.into_iter().map(Mod::CsgFormat).collect())
 }
 
-/// Converts the 'Growth Mode' integer to friendly name, e.g `Yes` when setting is on `1` in API
-pub fn prettify_growth_mode(growth_mode: i8) -> &'static str {
-  match growth_mode {
-    1 => "Yes",
-    2 => "No",
-    3 => "Paused",
-    _ => "Unknown"
-  }
-}
-
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CareerSavegame {
   #[serde(skip_serializing_if = "Option::is_none")]
@@ -166,7 +156,10 @@ pub struct Settings {
   /// Introduced in Patch 1.14 (FS25)
   #[cfg(feature = "fs25")]
   #[serde(default)]
-  pub is_cross_platform_savegame: bool
+  pub is_cross_platform_savegame: bool,
+  /// Introduced in Patch 1.18 (FS25)
+  #[cfg(feature = "fs25")]
+  pub initial_platform_name: Box<str>
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
