@@ -12,9 +12,6 @@ use {
   serde_json::Value
 };
 
-// todo; make xml-compatible with same structs below but feature flag toggle?
-//       as the fields below is all from JSON payload
-
 fn serde_mods<'de, D>(deserializer: D) -> Result<Vec<Mod>, D::Error>
 where
   D: Deserializer<'de>
