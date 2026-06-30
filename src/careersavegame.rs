@@ -154,6 +154,9 @@ pub struct Settings {
   #[serde(default)]
   pub auto_save_interval: f32,
   /// Introduced in Patch 1.14 (FS25)
+  ///
+  /// Will return `false` if game detects non-crossplay mod during savegame
+  /// creation
   #[cfg(feature = "fs25")]
   #[serde(default)]
   pub is_cross_platform_savegame: bool,
@@ -179,7 +182,7 @@ pub struct IntroductionHelp {
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CsgStatistics {
-  pub money:     i32,
+  pub money:     i64,
   #[serde(rename = "playTime")]
   pub play_time: f32
 }

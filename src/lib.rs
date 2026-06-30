@@ -1,16 +1,20 @@
 mod careersavegame;
+#[cfg(feature = "fs25")]
 mod economy;
 mod environment;
 mod farms;
 mod stats;
 pub mod utils;
+#[cfg(feature = "fs25")]
+mod vehicles;
 
 pub use {
   careersavegame::*,
   economy::*,
   environment::*,
   farms::*,
-  stats::*
+  stats::*,
+  vehicles::*
 };
 
 use {
@@ -129,7 +133,16 @@ impl Endpoint {
   }
 
   /// Returns the string containing the `/feed/dedicated-server-stats` endpoint
-  pub fn stats(&self) -> String { format!("{}/feed/dedicated-server-stats.{}?code={}", self.base_url, self.format, self.code) }
+  ///
+  /// `extra_data` exposes two hidden fields ([`Configuration`] and
+  /// [`DssStatistics`]) when enabled, only present in JSON data
+  pub fn stats(
+    &self,
+    extra_data: bool
+  ) -> String {
+    let idcode = if extra_data { "&idcode=" } else { "" };
+    format!("{}/feed/dedicated-server-stats.{}?code={}{idcode}", self.base_url, self.format, self.code)
+  }
 
   /// Returns the string containing the `/feed/dedicated-server-savegame`
   /// endpoint with chosen filename

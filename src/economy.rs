@@ -97,21 +97,21 @@ impl fmt::Display for SeasonPeriod {
     f: &mut fmt::Formatter<'_>
   ) -> fmt::Result {
     match self {
-      SeasonPeriod::EarlySpring => "Early Spring",
-      SeasonPeriod::MidSpring => "Mid Spring",
-      SeasonPeriod::LateSpring => "Late Spring",
+      Self::EarlySpring => "Early Spring",
+      Self::MidSpring => "Mid Spring",
+      Self::LateSpring => "Late Spring",
 
-      SeasonPeriod::EarlySummer => "Early Summer",
-      SeasonPeriod::MidSummer => "Mid Summer",
-      SeasonPeriod::LateSummer => "Late Summer",
+      Self::EarlySummer => "Early Summer",
+      Self::MidSummer => "Mid Summer",
+      Self::LateSummer => "Late Summer",
 
-      SeasonPeriod::EarlyAutumn => "Early Autumn",
-      SeasonPeriod::MidAutumn => "Mid Autumn",
-      SeasonPeriod::LateAutumn => "Late Autumn",
+      Self::EarlyAutumn => "Early Autumn",
+      Self::MidAutumn => "Mid Autumn",
+      Self::LateAutumn => "Late Autumn",
 
-      SeasonPeriod::EarlyWinter => "Early Winter",
-      SeasonPeriod::MidWinter => "Mid Winter",
-      SeasonPeriod::LateWinter => "Late Winter"
+      Self::EarlyWinter => "Early Winter",
+      Self::MidWinter => "Mid Winter",
+      Self::LateWinter => "Late Winter"
     }
     .fmt(f)
   }
