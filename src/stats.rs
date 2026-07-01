@@ -38,9 +38,11 @@ pub struct DssData {
   #[serde(default)]
   pub fields:        Vec<Field>,
   /// Only present if `&idcode=` is passed to the URL
-  pub configuration: Configuration,
+  #[serde(skip_serializing_if = "Option::is_none")]
+  pub configuration: Option<Configuration>,
   /// Only present if `&idcode=` is passed to the URL
-  pub statistics:    DssStatistics
+  #[serde(skip_serializing_if = "Option::is_none")]
+  pub statistics:    Option<DssStatistics>
 }
 
 impl Validation for DssData {
